@@ -40,18 +40,18 @@ export function getConceptTheme(concept: ConceptKey): ConceptThemeConfig {
   if (concept === "snackattack") {
     return {
       name: "SNACK ATTACK",
-      tagline: "Maximalist Snack Culture",
+      tagline: "India's Boldest Snack Protocol • Zero Chill. Maximum Crunch.",
       code: "CONCEPT C",
       basePath: "/concept-c-snackattack",
-      bgClass: "bg-[#0F0E13] text-white",
-      textClass: "text-white",
-      bannerClass: "bg-gradient-to-r from-[#FF6B6B] to-[#FF5400] text-black border-b-4 border-black",
-      accentHex: "#70E000",
-      secondaryHex: "#FF6B6B",
-      btnPrimaryClass: "bg-[#70E000] hover:bg-[#86f50f] text-black font-black border-3 border-black shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5",
-      btnSecondaryClass: "bg-black text-white font-bold border-2 border-white/20 hover:bg-neutral-900",
-      badgeClass: "bg-[#70E000] border-2 border-black text-black font-black shadow-[2px_2px_0px_#000]",
-      cardBorderClass: "border-black shadow-[4px_4px_0px_#000] hover:border-[#70E000]",
+      bgClass: "bg-[#FFFDF5] text-black",
+      textClass: "text-black",
+      bannerClass: "bg-[#FF5400] text-black border-b-4 border-black",
+      accentHex: "#FF5400",
+      secondaryHex: "#FFD60A",
+      btnPrimaryClass: "bg-[#FFD60A] hover:bg-[#ffe033] text-black font-black border-3 border-black shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5",
+      btnSecondaryClass: "bg-white text-black font-black border-3 border-black shadow-[4px_4px_0px_#000] hover:bg-[#FF007F] hover:text-white",
+      badgeClass: "bg-[#FFD60A] border-2 border-black text-black font-black shadow-[2px_2px_0px_#000]",
+      cardBorderClass: "border-black shadow-[4px_4px_0px_#000] hover:border-[#FF5400]",
       fontClass: "font-sans",
     };
   }

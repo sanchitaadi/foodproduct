@@ -56,18 +56,18 @@ export default function RootHomePage() {
       id: "concept-c",
       code: "CONCEPT C",
       name: "SNACK ATTACK",
-      tagline: "Unapologetic Crunch. Zero Chill.",
-      description: "Maximalist snack culture with hyper-vibrant pop art energy. Electric neon lime, hot peach, neo-brutalist drop-shadows, and sticker badges.",
+      tagline: "Zero Chill. Maximum Crunch.",
+      description: "Loud, unapologetic, maximalist Gen-Z snack identity. Electric orange, punch yellow, hot pink, and chunky 4px black borders with heavy crunch.",
       route: "/concept-c-snackattack",
       shopRoute: "/concept-c-snackattack/shop",
-      sampleProductRoute: "/concept-c-snackattack/product/kettle-cooked-sea-salt-crisps",
-      accent: "#70E000",
-      accentBg: "bg-[#70E000]",
-      borderHover: "hover:border-[#70E000]",
-      badge: "Neo-Brutalist Snack",
+      sampleProductRoute: "/concept-c-snackattack/product/masala-chips",
+      accent: "#FF5400",
+      accentBg: "bg-[#FF5400]",
+      borderHover: "hover:border-[#FF5400]",
+      badge: "High-Voltage Munchies",
       icon: Zap,
-      vibe: "Electric Lime • Hot Peach • Jet Black Drop Shadows",
-      colorSwatches: ["#70E000", "#FF6B6B", "#FF5400", "#000000"]
+      vibe: "Electric Orange • Punch Yellow • Hard Drop Shadows",
+      colorSwatches: ["#FF5400", "#FFD60A", "#FF007F", "#000000"]
     }
   ];
 

@@ -8,12 +8,15 @@ import { MarqueeBanner } from "@/components/animation/MarqueeBanner";
 
 export function SnackAttackFooter() {
   const pathname = usePathname();
-  let basePath = "/concepts/pop-cult";
-  let brandName = "POP CULT";
+  let basePath = "/concept-c-snackattack";
+  let brandName = "SNACK ATTACK";
 
   if (pathname?.includes("pop-snacks")) {
     basePath = "/concepts/pop-snacks";
     brandName = "POP SNACKS";
+  } else if (pathname?.includes("concept-c-snackattack")) {
+    basePath = "/concept-c-snackattack";
+    brandName = "SNACK ATTACK";
   } else if (pathname?.includes("snack-attack")) {
     basePath = "/concepts/snack-attack";
     brandName = "SNACK ATTACK";
@@ -29,7 +32,8 @@ export function SnackAttackFooter() {
             "HOT CHILLIES FROM RAJASTHAN",
             "MIND-BLOWING CRUNCH MATRIX",
             "GEN-Z CRAVE CULTURE",
-            "ZERO BORING NACHOS",
+            "ZERO BORING CHIPS",
+            "100% VEGETARIAN",
           ]}
           speedSec={18}
           itemClassName="font-black text-sm uppercase tracking-wider text-black"
@@ -49,10 +53,10 @@ export function SnackAttackFooter() {
               </span>
             </div>
             <p className="text-xs text-zinc-400 font-mono leading-relaxed">
-              Design 01 for Peachy Plate Foods. Loud, unapologetic, dopamine-loaded packaged snacks for India. Zero trans fats, maximum fire.
+              Concept C for Peachy Plate Foods. Loud, unapologetic, dopamine-loaded packaged snacks for India. Zero trans fats, maximum fire.
             </p>
             <div className="inline-block bg-[#FFD60A] text-black font-black text-[10px] px-2.5 py-1 border border-white rotate-[-2deg]">
-              FSSAI LIC: 10022043000881 [DEMO]
+              FSSAI LIC: 10019022009876
             </div>
           </div>
 
@@ -64,17 +68,22 @@ export function SnackAttackFooter() {
             <ul className="space-y-2 text-xs font-bold uppercase text-zinc-300">
               <li>
                 <Link href={`${basePath}/shop`} className="hover:text-[#FF5400] transition-colors">
-                  All Products
+                  All Snacks
                 </Link>
               </li>
               <li>
-                <Link href={`${basePath}/product/masala-chips`} className="hover:text-[#FF5400] transition-colors">
-                  Desi Fire Masala Chips
+                <Link href={`${basePath}/product/kettle-cooked-sea-salt-crisps`} className="hover:text-[#FF5400] transition-colors">
+                  Kettle Cooked Sea Salt Crisps
                 </Link>
               </li>
               <li>
-                <Link href={`${basePath}/product/peri-peri-makhana`} className="hover:text-[#FF5400] transition-colors">
-                  Peri Peri Makhana
+                <Link href={`${basePath}/product/spiced-millet-crackers`} className="hover:text-[#FF5400] transition-colors">
+                  Spiced Millet Crackers
+                </Link>
+              </li>
+              <li>
+                <Link href={`${basePath}/product/gourmet-sorghum-crisps`} className="hover:text-[#FF5400] transition-colors">
+                  Gourmet Sorghum Crisps
                 </Link>
               </li>
             </ul>
@@ -87,7 +96,7 @@ export function SnackAttackFooter() {
             </h4>
             <ul className="space-y-2 text-xs font-bold uppercase text-zinc-300">
               <li>
-                <Link href={`${basePath}/about`} className="hover:text-[#FF5400] transition-colors">
+                <Link href={`${basePath}/our-story`} className="hover:text-[#FF5400] transition-colors">
                   Our Brand Manifesto
                 </Link>
               </li>
@@ -97,44 +106,47 @@ export function SnackAttackFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/concepts" className="text-[#FFD60A] hover:underline">
-                  Compare All 4 Design Options
+                <Link href={`${basePath}/track-order`} className="hover:text-[#FF5400] transition-colors">
+                  Track Order
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-[#FFD60A] hover:underline">
+                  Back to 3 Concepts Launchpad
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Newsletter Box */}
-          <div className="bg-[#1C1C1E] border-2 border-white p-5 rounded-2xl shadow-[4px_4px_0px_#FF5400]">
-            <h4 className="font-black text-sm text-[#FFD60A] uppercase tracking-wider mb-1 flex items-center gap-1.5">
-              <Flame className="w-4 h-4 text-[#FF5400]" />
-              <span>Get Secret Snack Drops</span>
-            </h4>
-            <p className="text-[11px] text-zinc-400 font-mono mb-3">
-              10% off your first box + exclusive tasting samples delivered to your hostel or desk.
+          <div className="bg-[#141414] border-2 border-zinc-800 p-6 rounded-2xl shadow-[4px_4px_0px_#FFD60A] space-y-3">
+            <div className="flex items-center gap-1.5 text-xs font-black uppercase text-[#FFD60A]">
+              <Flame className="w-4 h-4 fill-[#FFD60A]" />
+              <span>THE DROP LIST</span>
+            </div>
+            <p className="text-xs text-zinc-400 font-mono">
+              Get notified 15 minutes before high-heat snack drops hit the shelves.
             </p>
             <div className="flex gap-2">
               <input
                 type="email"
-                placeholder="YOUR.NAME@CAMPUS.IN"
-                className="w-full text-xs px-3 py-2 bg-black border border-zinc-700 text-white rounded-lg outline-none font-mono focus:border-[#FF5400]"
+                placeholder="YOUR EMAIL..."
+                className="bg-black border border-zinc-700 px-3 py-2 text-xs font-mono text-white rounded-lg flex-1 focus:border-[#FF5400] outline-none"
               />
-              <button className="bg-[#FF5400] hover:bg-[#FFD60A] text-black font-black text-xs px-3 py-2 rounded-lg transition-colors border border-black shrink-0">
+              <button
+                className="bg-[#FF5400] text-black font-black text-xs px-3 py-2 rounded-lg border border-black hover:bg-[#FFD60A] transition-colors"
+              >
                 JOIN
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Strip */}
-        <div className="pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-          <div>
-            © 2026 Peachy Plate Foods Pvt Ltd • Packaged Food E-Commerce Prototype (Design 01)
-          </div>
+        <div className="border-t border-zinc-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+          <p>© 2026 Peachy Plate Foods Ltd. • Snack Attack (Concept C) • FSSAI Lic. 10019022009876</p>
           <div className="flex gap-4">
-            <Link href="/checkout" className="hover:text-white">Demo Checkout</Link>
-            <Link href="/account" className="hover:text-white">My Account</Link>
-            <Link href="/admin" className="hover:text-white">Admin Dashboard</Link>
+            <Link href="/" className="hover:text-white">All 3 Concepts</Link>
+            <Link href="/admin" className="hover:text-white">Admin</Link>
           </div>
         </div>
       </div>

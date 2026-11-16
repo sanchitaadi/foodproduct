@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Zap, ShoppingBag, Flame, Menu, X } from "lucide-react";
+import { Zap, ShoppingBag, Flame, Menu, X, ArrowLeft } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 
 export function SnackAttackNav() {
@@ -11,13 +11,16 @@ export function SnackAttackNav() {
   const { getItemCount, openCart } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  let basePath = "/concepts/pop-cult";
-  let brandName = "POP CULT";
-  let brandSub = "PEACHY PLATE FOODS // DESIGN 01";
+  let basePath = "/concept-c-snackattack";
+  let brandName = "SNACK ATTACK";
+  let brandSub = "PEACHY PLATE FOODS // CONCEPT C";
 
   if (pathname?.includes("pop-snacks")) {
     basePath = "/concepts/pop-snacks";
     brandName = "POP SNACKS";
+  } else if (pathname?.includes("concept-c-snackattack")) {
+    basePath = "/concept-c-snackattack";
+    brandName = "SNACK ATTACK";
   } else if (pathname?.includes("snack-attack")) {
     basePath = "/concepts/snack-attack";
     brandName = "SNACK ATTACK";
@@ -65,7 +68,7 @@ export function SnackAttackNav() {
             Shop All Snacks
           </Link>
           <Link
-            href={`${basePath}/about`}
+            href={`${basePath}/our-story`}
             className="font-black text-sm uppercase tracking-wider text-black hover:text-white transition-colors"
           >
             Our Manifesto
@@ -76,6 +79,12 @@ export function SnackAttackNav() {
           >
             Holler At Us
           </Link>
+          <Link
+            href="/"
+            className="font-black text-xs uppercase tracking-wider text-black bg-white/80 hover:bg-white px-2.5 py-1 border border-black rounded transition-colors"
+          >
+            All 3 Concepts
+          </Link>
         </nav>
 
         {/* Right CTA / Cart */}
@@ -83,6 +92,7 @@ export function SnackAttackNav() {
           <button
             onClick={openCart}
             className="relative bg-[#FFD60A] border-2 border-black px-4 py-2 font-black text-xs uppercase shadow-[3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all flex items-center gap-2"
+            aria-label="Open Cart"
           >
             <ShoppingBag className="w-4 h-4" />
             <span className="hidden sm:inline">Stash Bag</span>
@@ -94,6 +104,7 @@ export function SnackAttackNav() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg border-2 border-black bg-[#FFD60A]"
+            aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -118,7 +129,7 @@ export function SnackAttackNav() {
             Shop All Snacks
           </Link>
           <Link
-            href={`${basePath}/about`}
+            href={`${basePath}/our-story`}
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2 border-b border-black/20"
           >
@@ -127,9 +138,16 @@ export function SnackAttackNav() {
           <Link
             href={`${basePath}/contact`}
             onClick={() => setMobileMenuOpen(false)}
-            className="block py-2"
+            className="block py-2 border-b border-black/20"
           >
             Holler At Us
+          </Link>
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-2"
+          >
+            All 3 Concepts
           </Link>
         </div>
       )}

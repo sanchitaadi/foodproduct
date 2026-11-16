@@ -1,54 +1,72 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Zap, Plus, Flame, Star } from "lucide-react";
+import { Zap, Plus, Flame, Star, Check } from "lucide-react";
 import { PackagedFoodProduct } from "@/types/products";
 import { SafeImage } from "@/components/common/SafeImage";
 import { useCart } from "@/hooks/useCart";
+import { useToast } from "@/hooks/useToast";
 
 interface SnackProductCardProps {
-  product: PackagedFoodProduct;
+  product: PackagedFoodProduct | any;
   basePath?: string;
 }
 
 export function SnackProductCard({ product, basePath }: SnackProductCardProps) {
   const pathname = usePathname();
-  const { addItem } = useCart();
-  const primaryPack = product.packSizes[0];
+  const { addItem, openCart } = useCart();
+  const { addToast } = useToast();
+  const [isAdded, setIsAdded] = useState(false);
 
   let currentBasePath = basePath;
   if (!currentBasePath) {
-    if (pathname?.includes("pop-cult")) {
+    if (pathname?.includes("concept-c-snackattack")) {
+      currentBasePath = "/concept-c-snackattack";
+    } else if (pathname?.includes("pop-cult")) {
       currentBasePath = "/concepts/pop-cult";
     } else if (pathname?.includes("pop-snacks")) {
       currentBasePath = "/concepts/pop-snacks";
+    } else if (pathname?.includes("snack-attack")) {
+      currentBasePath = "/concept-c-snackattack";
     } else {
-      currentBasePath = "/concepts/pop-cult";
+      currentBasePath = "/concept-c-snackattack";
     }
   }
+
+  // Handle both PackagedFoodProduct and DemoProduct shapes
+  const primaryPack = product.packSizes?.[0] || {
+    id: "std",
+    label: "Standard Pack",
+    title: "Standard Pack",
+    packSize: "Standard",
+    priceInr: product.price || 99,
+    price: product.price || 99,
+    compareAtPriceInr: product.compareAtPrice,
+    netQuantity: "100g",
+    weightGrams: 100,
+    inStock: true
+  };
+
+  const price = primaryPack.priceInr || primaryPack.price || product.price || 99;
+  const compareAt = primaryPack.compareAtPriceInr || primaryPack.compareAtPrice;
+  const primaryImg = product.primaryImage || product.images?.primary || "/images/products/kettle-cooked-sea-salt-crisps.jpg";
+  const badgeText = product.brandVibes?.snackAttackBadge || (product.isBestseller ? "BESTSELLER 🔥" : "10/10 CRUNCH");
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const cartProduct = {
-      id: Number(product.id.replace(/\D/g, "")) || Math.floor(Math.random() * 1000) + 1,
-      name: product.name,
-      slug: product.slug,
-      price: primaryPack.priceInr,
-      originalPrice: primaryPack.compareAtPriceInr || primaryPack.priceInr + 30,
-      images: {
-        primary: product.primaryImage,
-        gallery: product.galleryImages,
-      },
-      tagline: product.subtitle,
-      packSizes: product.packSizes.map((p) => p.label),
-      badge: product.brandVibes.snackAttackBadge || "POPULAR",
-    };
-
-    addItem(cartProduct, primaryPack.label, 1);
+    addItem(product, primaryPack, 1);
+    setIsAdded(true);
+    addToast(
+      "Stashed!",
+      `1x ${product.name} added to your munchie bag.`,
+      "success"
+    );
+    setTimeout(() => setIsAdded(false), 1500);
+    openCart();
   };
 
   return (
@@ -60,18 +78,18 @@ export function SnackProductCard({ product, basePath }: SnackProductCardProps) {
         {/* Top Sticker Badges */}
         <div className="flex items-center justify-between gap-2 mb-3">
           <span className="bg-[#FFD60A] text-black text-[10px] font-black uppercase px-2 py-0.5 border-2 border-black rotate-[-3deg] shadow-[2px_2px_0px_#000]">
-            {product.brandVibes.snackAttackBadge || "10/10 CRUNCH"}
+            {badgeText}
           </span>
           <div className="flex items-center gap-1 text-[11px] font-black bg-white px-1.5 py-0.5 border border-black rounded">
             <Star className="w-3 h-3 fill-[#FF5400] text-[#FF5400]" />
-            <span>{product.rating}</span>
+            <span>{product.rating || 4.8}</span>
           </div>
         </div>
 
-        {/* Product Image */}
-        <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-black/5 border-2 border-black mb-3">
+        {/* Product Image Frame */}
+        <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#FFD60A]/20 border-2 border-black mb-3">
           <SafeImage
-            src={product.primaryImage}
+            src={primaryImg}
             alt={product.name}
             concept="snack-attack"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -79,29 +97,53 @@ export function SnackProductCard({ product, basePath }: SnackProductCardProps) {
         </div>
 
         {/* Title & Subtitle */}
-        <h3 className="font-black text-lg uppercase tracking-tight group-hover:text-[#FF5400] transition-colors line-clamp-1 mb-1">
-          {product.name}
-        </h3>
-        <p className="text-xs text-neutral-600 line-clamp-2 leading-relaxed mb-4">
-          {product.subtitle}
-        </p>
+        <div className="space-y-1">
+          <span className="text-[10px] font-black uppercase tracking-wider text-[#FF5400] block">
+            {product.categoryName || product.category?.name || "Desi Munchies"}
+          </span>
+          <h3 className="font-black text-base uppercase tracking-tight text-black group-hover:text-[#FF5400] transition-colors line-clamp-1">
+            {product.name}
+          </h3>
+          <p className="text-[11px] text-neutral-600 font-medium line-clamp-2 leading-relaxed">
+            {product.subtitle || product.tagline || product.description}
+          </p>
+        </div>
       </div>
 
-      {/* Pricing & Add to Cart */}
-      <div className="pt-3 border-t-2 border-black flex items-center justify-between">
+      {/* Footer: Price & Quick Add */}
+      <div className="pt-4 mt-3 border-t-2 border-black/10 flex items-center justify-between gap-2">
         <div>
-          <span className="font-black text-xl text-black">
-            ₹{primaryPack.priceInr}
+          <div className="flex items-baseline gap-1.5">
+            <span className="font-black text-lg text-black">₹{price}</span>
+            {compareAt && (
+              <span className="text-xs font-bold line-through text-neutral-400">
+                ₹{compareAt}
+              </span>
+            )}
+          </div>
+          <span className="text-[9px] font-mono font-bold text-neutral-500 block">
+            {primaryPack.label || primaryPack.packSize || primaryPack.netQuantity || "100g Pouch"}
           </span>
-          <div className="text-[10px] text-neutral-500 font-mono">{primaryPack.label}</div>
         </div>
 
         <button
           onClick={handleQuickAdd}
-          className="bg-[#FF5400] text-black p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:bg-[#FFD60A] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all"
-          title="Add to Stash"
+          className={`px-3 py-2 border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0px_#000] hover:shadow-[1px_1px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] transition-all flex items-center gap-1 ${
+            isAdded ? "bg-emerald-400 text-black" : "bg-[#FFD60A] text-black hover:bg-[#FF5400] hover:text-white"
+          }`}
+          aria-label={`Add ${product.name} to bag`}
         >
-          <Plus className="w-4 h-4 stroke-[3]" />
+          {isAdded ? (
+            <>
+              <Check className="w-3.5 h-3.5 stroke-[3]" />
+              <span>Added!</span>
+            </>
+          ) : (
+            <>
+              <Plus className="w-3.5 h-3.5 stroke-[3]" />
+              <span>Stash</span>
+            </>
+          )}
         </button>
       </div>
     </Link>

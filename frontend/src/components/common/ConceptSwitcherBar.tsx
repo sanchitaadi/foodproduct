@@ -46,7 +46,7 @@ export const ConceptSwitcherBar: React.FC = () => {
       href: "/concept-c-snackattack",
       matchPrefix: "/concept-c-snackattack",
       icon: Zap,
-      activeColor: "bg-[#70E000] text-black font-black border border-black shadow-[2px_2px_0px_#000]",
+      activeColor: "bg-[#FF5400] text-black font-black border-2 border-black shadow-[2px_2px_0px_#000]",
     },
   ];
 
