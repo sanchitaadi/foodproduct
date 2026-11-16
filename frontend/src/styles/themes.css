@@ -1,0 +1,52 @@
+/* =====================================================================
+   PEACHY PLATE — THREE INDEPENDENT FOOD STOREFRONT THEME TOKENS
+   Applied via data-brand="flavourverse" | "purepantry" | "snackattack"
+   ===================================================================== */
+
+/* 1. FLAVOURVERSE — Bold Editorial Food Universe */
+[data-brand="flavourverse"],
+[data-theme="flavourverse"],
+[data-brand="concept-a-flavourverse"] {
+  --brand-primary: #FF9F1C; /* Saffron Gold */
+  --brand-secondary: #1F0E1C; /* Royal Plum */
+  --brand-accent: #E5A93C; /* Editorial Amber */
+  --brand-bg: #120811; /* Night Noir */
+  --brand-surface: #1F0E1C; /* Deep Plum */
+  --brand-text-primary: #FFF4E8; /* Chantilly Cream */
+  --brand-text-secondary: #D1C4D0;
+  --brand-border: rgba(255, 159, 28, 0.25);
+  --brand-shadow: 0 10px 30px -10px rgba(255, 159, 28, 0.2);
+  --brand-radius: 16px;
+}
+
+/* 2. PURE & PANTRY — Modern Organic & Wellness */
+[data-brand="purepantry"],
+[data-theme="purepantry"],
+[data-brand="concept-b-purepantry"] {
+  --brand-primary: #1E3A2F; /* Botanical Forest */
+  --brand-secondary: #4A5844; /* Sage Olive */
+  --brand-accent: #C88D6A; /* Warm Terracotta */
+  --brand-bg: #FAF7F2; /* Warm Linen */
+  --brand-surface: #FFFFFF;
+  --brand-text-primary: #1E3A2F;
+  --brand-text-secondary: #6E7769;
+  --brand-border: #E5E0D5;
+  --brand-shadow: 0 8px 24px -6px rgba(30, 58, 47, 0.08);
+  --brand-radius: 20px;
+}
+
+/* 3. SNACK ATTACK — Maximalist Snack Culture */
+[data-brand="snackattack"],
+[data-theme="snackattack"],
+[data-brand="concept-c-snackattack"] {
+  --brand-primary: #FFE600; /* Electric Yellow */
+  --brand-secondary: #FF2A85; /* Hot Pink */
+  --brand-accent: #00E5FF; /* Bright Cyan */
+  --brand-bg: #FFE600; /* High Voltage Yellow */
+  --brand-surface: #FFFFFF;
+  --brand-text-primary: #000000;
+  --brand-text-secondary: #2A2A2A;
+  --brand-border: #000000;
+  --brand-shadow: 6px 6px 0px #000000;
+  --brand-radius: 12px;
+}
